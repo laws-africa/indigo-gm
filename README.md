@@ -22,3 +22,9 @@ class MyAppConfig(AppConfig):
     def ready(self):
         import indigo_gm.publications
 ```
+
+Set the Gazette Machine authorization token in your `settings.py`:
+
+```python
+GM = {'API_AUTH_TOKEN': 'abc-123'}
+```
