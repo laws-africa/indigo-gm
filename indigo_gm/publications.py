@@ -13,6 +13,8 @@ class GazetteMachinePublicationFinder(BasePublicationFinder):
     """
 
     headers = {'Authorization': 'Token %s' % settings.GM['API_AUTH_TOKEN']}
+    api_url = settings.GM.get('API_URL', 'https://api.gazettes.laws.africa/v1')
+    timeout = 5.0
 
     def find_publications(self, params):
         date = params.get('date')
@@ -32,7 +34,7 @@ class GazetteMachinePublicationFinder(BasePublicationFinder):
         if publication:
             params['publication'] = publication
         headers = self.headers
-        resp = requests.get(settings.GM['API_URL'] + '/gazettes/archived/', params=params, timeout=5.0, headers=headers)
+        resp = requests.get(self.api_url + '/gazettes/archived/', params=params, timeout=self.timeout, headers=headers)
         resp.raise_for_status()
 
         data = resp.json().get('results', [])

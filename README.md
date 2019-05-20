@@ -26,5 +26,8 @@ class MyAppConfig(AppConfig):
 Set the Gazette Machine authorization token in your `settings.py`:
 
 ```python
-GM = {'API_AUTH_TOKEN': 'abc-123'}
+GM = {
+    'API_AUTH_TOKEN': 'abc-123',
+    'API_URL': 'https://api.gazettes.laws.africa/v1',
+}
 ```
