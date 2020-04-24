@@ -40,6 +40,7 @@ setup(
 
     python_requires='~=3.6',
     install_requires=[
+        'django>=2.2.12,<3',
         'indigo>=3',
         'requests>=2',
     ],
