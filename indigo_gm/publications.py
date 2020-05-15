@@ -35,6 +35,9 @@ class GazetteMachinePublicationFinder(BasePublicationFinder):
             params['publication'] = publication
         headers = self.headers
         resp = requests.get(self.api_url + '/gazettes/archived/', params=params, timeout=self.timeout, headers=headers)
+        # bad country provided
+        if resp.status_code == 400:
+            return []
         resp.raise_for_status()
 
         data = resp.json().get('results', [])
